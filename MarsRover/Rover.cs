@@ -11,9 +11,9 @@
 
         public World World { get; }
         public Position Position { get; private set; }
-        public Direction Direction { get; }
+        public Direction Direction { get; private set; }
 
-        public void Move(params char[] commands)
+        public void Command(params char[] commands)
         {
             foreach (var command in commands)
             {
@@ -24,6 +24,12 @@
                         break;
                     case 'b':
                         Position = World.Move(Position, Direction.Reverse());
+                        break;
+                    case 'r':
+                        Direction = Direction.TurnRight();
+                        break;
+                    case 'l':
+                        Direction = Direction.TurnLeft();
                         break;
                     default:
                         break;
