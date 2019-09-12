@@ -37,7 +37,7 @@ namespace MarsRover
             var xNew = position.X + dX;
             var yNew = position.Y + dY;
 
-            if (xNew > Width)
+            if (xNew > Width + 1)
             {
                 xNew = 1;
             }
@@ -45,7 +45,7 @@ namespace MarsRover
             {
                 xNew = Width;
             }
-            if (yNew > Height)
+            if (yNew > Height + 1)
             {
                 yNew = 1;
             }

@@ -1,12 +1,15 @@
-﻿namespace MarsRover
+﻿using System;
+
+namespace MarsRover
 {
     public class Rover
     {
+        private const int commandLength = 3;
         public Rover(IWorldGenerator worldGenerator, Position position, Direction direction)
         {
             World = worldGenerator.Generate();
             Position = position;
-            Direction = direction;
+            Direction = Direction.North;
         }
 
         public World World { get; }
@@ -15,15 +18,17 @@
 
         public void Command(params char[] commands)
         {
-            foreach (var command in commands)
+            ValidateCommands(commands);
+            for (var i = 0; i < commandLength; i++)
             {
+                var command = commands[i];
                 switch (command)
                 {
                     case 'f':
                         Position = World.Move(Position, Direction);
                         break;
                     case 'b':
-                        Position = World.Move(Position, Direction.Reverse());
+                        Position = World.Move(Position, Direction.Reverse().Reverse());
                         break;
                     case 'r':
                         Direction = Direction.TurnRight();
@@ -34,6 +39,14 @@
                     default:
                         break;
                 }
+            }
+        }
+
+        private void ValidateCommands(char[] commands)
+        {
+            if (commands.Length > 10)
+            {
+                throw new NotImplementedException();
             }
         }
     }
