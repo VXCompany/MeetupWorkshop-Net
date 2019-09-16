@@ -4,7 +4,9 @@ namespace MarsRover
 {
     public class Rover
     {
-        private const int commandLength = 3;
+        private const int COMMANDLENGTH = 3;
+        private const int SERVERSIZE = 20;
+
         public Rover(IWorldGenerator worldGenerator, Position position, Direction direction)
         {
             World = worldGenerator.Generate();
@@ -19,7 +21,7 @@ namespace MarsRover
         public void Command(params char[] commands)
         {
             ValidateCommands(commands);
-            for (var i = 0; i < commandLength; i++)
+            for (var i = 0; i < COMMANDLENGTH; i++)
             {
                 var command = commands[i];
                 switch (command)
@@ -44,9 +46,9 @@ namespace MarsRover
 
         private void ValidateCommands(char[] commands)
         {
-            if (commands.Length > 10)
+            if (commands.Length > SERVERSIZE)
             {
-                throw new NotImplementedException();
+                throw new OutOfMemoryException();
             }
         }
     }
