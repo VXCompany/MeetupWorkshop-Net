@@ -10,7 +10,7 @@ namespace MarsRover.Test
         public void ExampleTest()
         {
             //Arrange
-            var worldGenerator = new MarsGenerator();
+            var worldGenerator = new RandomWorldGenerator();
             var startposition = new Position(1, 1);
             var startDirection = Direction.North;
 
